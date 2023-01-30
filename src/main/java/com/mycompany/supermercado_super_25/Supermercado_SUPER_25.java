@@ -67,10 +67,6 @@ public class Supermercado_SUPER_25 {
                     while (masProductos!=2) {
                         /// Lectura de consola para menu de registro
                         System.out.println("\nPor favor elija una opcion:\n1) Anadir un producto\n2) Volver al menu principal");
-                        System.out.println("Producto\tPrecio");
-                        for (int i = 0; i < SumaProductos; i++) {
-                            System.out.println(producto[i].nombreProducto +"\t\t"+producto[i].precio );
-                        }
                         int MenuProductoOpcion= Integer.parseInt(ScannerObject.nextLine());
                         if(MenuProductoOpcion==1){
                             int productoExistente = 0;
