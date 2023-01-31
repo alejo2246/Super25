@@ -159,27 +159,22 @@ public class Supermercado_SUPER_25 {
                         nitCliente = "C/F";
                     }
                     System.out.println("Ha registrado a " + nombreCliente + " con documento " + nitCliente);
-                    System.out.println(
-                            "Seleccione que productos desea con su indice respectivo, al finalizar indique `Terminar`\nProductos Registrados:");
 
-                    /// Visualizacion de productos registrados
-                    for (int i = 0; i < producto.length; i++) {
-                        System.out.println(
-                                "" + (i + 1) + ") " + producto[i].nombreProducto + " Precio: $" + producto[i].precio);/// Se
-                                                                                                                      /// evita
-                                                                                                                      /// mostrar
-                                                                                                                      /// un
-                                                                                                                      /// indice
-                                                                                                                      /// 0
-                                                                                                                      /// mediante
-                                                                                                                      /// i+1
-                    }
 
                     /// Seleccion de productos para vender hasta que se ingrese `Terminar`
+                    int sumaVendidos =0;
                     int completado = 0;
                     float total = 0;
-                    int[] Vendidos = new int[20];
+                    int[] vendidos = new int[20];
                     while (completado != 1) {
+                        System.out.println(
+                                "Seleccione que productos desea con su indice respectivo, al finalizar indique `Terminar`\nProductos Registrados:");
+
+                        /// Visualizacion de productos registrados
+                        for (int i = 0; i < SumaProductos; i++) {
+                            System.out.println(
+                                    "" + (i + 1) + ") " + producto[i].nombreProducto + " Precio: $" + producto[i].precio);/// Se evita mostrar un indice 0 mediante i+1
+                        }                        
                         /// Comunicacion por consola
                         String productoSeleccionado = ScannerObject.nextLine();
 
@@ -192,7 +187,8 @@ public class Supermercado_SUPER_25 {
 
                             /// Eliminando el impacto de i+1 se actualiza la cantidad vendida del producto y
                             /// la cantidad vendida para la sesion (cliente) actual
-                            producto[prodSeleccionado - 1].cantidadSesion = cantidadProducto;
+                            producto[prodSeleccionado
+                                    - 1].cantidadSesion = cantidadProducto;                            
                             producto[prodSeleccionado
                                     - 1].cantidadVendida = producto[prodSeleccionado - 1].cantidadVendida
                                             + cantidadProducto;
@@ -203,7 +199,8 @@ public class Supermercado_SUPER_25 {
                             /// Se registran los indices de los productos vendidos en caso que el usuario
                             /// decida registrar nuevamente un mismo producto
                             /// De esta forma se podra visualizar apropiadamente en la factura
-                            Vendidos[Vendidos.length - 1] = prodSeleccionado;
+                            vendidos[sumaVendidos] = prodSeleccionado-1;
+                            sumaVendidos++;
                         } else
                             completado = 1;
                     }
@@ -211,17 +208,16 @@ public class Supermercado_SUPER_25 {
                     /// Comunicacion por consola para validar el posible descuento
                     System.out.println("Codigo de descuento (opcional): ");
                     String CodDescuento = ScannerObject.nextLine();
-                    float descuentoAplicado = 1;
+                    float descuentoAplicado = 0;
 
                     /// Si el descuento es diferente a un enter se entrara a buscar el nombre
                     /// ingresado del cupon mediante la iteracion de la lista que contiene los
                     /// cupones registrados
                     if (!CodDescuento.equals("")) {
-                        int codDescuentoAux = Integer.parseInt(CodDescuento);
-                        for (int i = 0; i < cupones.length; i++) {
+                        for (int i = 0; i < sumaCupones; i++) {
                             if (CodDescuento.equals(cupones[i].nombreCodigo)) {
                                 /// Se prepara la multiplicacion del descuento al total
-                                descuentoAplicado = cupones[i].descuento / 100;
+                                descuentoAplicado = cupones[i].descuento;
                             }
                         }
                     }
@@ -241,10 +237,10 @@ public class Supermercado_SUPER_25 {
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
                     System.out.println("\tProducto  _ _ _ Precio/u _ _ _ Cantidad _ _ _ Total");
-                    for (int i = 0; i < Vendidos.length; i++) {
-                        System.out.println("\t" + producto[Vendidos[i]].nombreProducto + " _ _ _ "
-                                + producto[Vendidos[i]].precio + " " + producto[Vendidos[i]].cantidadVendida + " "
-                                + producto[Vendidos[i]].cantidadVendida * producto[Vendidos[i]].precio);
+                    for (int i = 0; i < sumaVendidos; i++) {
+                        System.out.println("\t" + producto[vendidos[i]].nombreProducto + " _ _ _ "
+                                + producto[vendidos[i]].precio + " " + producto[vendidos[i]].cantidadSesion + " "
+                                + producto[vendidos[i]].cantidadSesion * producto[vendidos[i]].precio);
                     }
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
@@ -252,7 +248,7 @@ public class Supermercado_SUPER_25 {
                     System.out.println("\tDescuento: \t\t" + descuentoAplicado * 100 + "%");
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
-                    System.out.println("\tTotal: \t\t" + total * descuentoAplicado);
+                    System.out.println("\tTotal: \t\t" + total * (1-descuentoAplicado));
 
                     break;
                 }

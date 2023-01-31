@@ -11,6 +11,8 @@ package com.mycompany.supermercado_super_25;
 public class Productos {
     String nombreProducto;
     float precio;
+    int cantidadVendida;
+    int cantidadSesion;
     
     public Productos(String nombre, float precio){
         this.nombreProducto = nombre;
