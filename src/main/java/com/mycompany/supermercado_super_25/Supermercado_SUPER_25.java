@@ -22,6 +22,7 @@ public class Supermercado_SUPER_25 {
         int SumaProductos=0;
         codigoDescuento cupones[]=new codigoDescuento[10];
         int sumaCupones=0;
+        int productosVendidos[]  = new int[20];
         /// Creacion de crdenciales
         String[] users = { "cajero_1", "cajero_2", "cajero_3" };
         String[] passwords = { "ipc_1", "ipc_2", "ipc_3" };
@@ -67,6 +68,7 @@ public class Supermercado_SUPER_25 {
                     while (masProductos!=2) {
                         /// Lectura de consola para menu de registro
                         System.out.println("\nPor favor elija una opcion:\n1) Anadir un producto\n2) Volver al menu principal");
+                        
                         int MenuProductoOpcion= Integer.parseInt(ScannerObject.nextLine());
                         if(MenuProductoOpcion==1){
                             int productoExistente = 0;
@@ -130,6 +132,12 @@ public class Supermercado_SUPER_25 {
     
                 }
                 case "4": {
+                    for(int i=0;i<SumaProductos;i++){
+                        producto[i].cantidadVendida = producto[i].cantidadVendida + 10;
+                        System.out.println(producto[i].cantidadVendida);
+                    }
+                    System.out.println("Producto\t\t\tCantidad total vendida");
+
                     break;
                 }
                 case "5": {
