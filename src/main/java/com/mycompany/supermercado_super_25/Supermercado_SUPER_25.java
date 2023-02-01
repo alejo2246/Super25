@@ -76,9 +76,9 @@ public class Supermercado_SUPER_25 {
                             int productoExistente = 0;
                             /// Entrada de Parametros y creacion de objetos con dichos parametros como
                             /// argumentos
-                            System.out.println("Nombre del producto: ");
+                            System.out.print("\nNombre del producto: ");
                             String nombreProducto = ScannerObject.nextLine();
-                            System.out.println("Precio del producto: ");
+                            System.out.print("Precio del producto: ");
                             float precioProducto = Float.parseFloat(ScannerObject.nextLine());
                             /// Prevencion de pre-existencia del producto recorriendo los productos ya
                             /// creados previamente
@@ -147,9 +147,9 @@ public class Supermercado_SUPER_25 {
                             "\t\tBienvenido al menu de venta");
 
                     /// Lectura y comunicacion por consola
-                    System.out.println("Por favor, registre los siguientes datos del cliente\nNombre: ");
+                    System.out.print("Por favor, registre los siguientes datos del cliente\nNombre: ");
                     String nombreCliente = ScannerObject.nextLine();
-                    System.out.println("NIT (opcional): ");
+                    System.out.print("NIT (opcional): ");
                     String nitCliente = ScannerObject.nextLine();
 
                     /// El NIT se valida como diferente de vacio, en caso de que se provea. De lo
@@ -168,12 +168,13 @@ public class Supermercado_SUPER_25 {
                     int[] vendidos = new int[20];
                     while (completado != 1) {
                         System.out.println(
-                                "Seleccione que productos desea con su indice respectivo, al finalizar indique `Terminar`\nProductos Registrados:");
+                                "\nSeleccione que productos desea con su indice respectivo, al finalizar indique `Terminar`\n\t\tProductos Registrados:");
 
                         /// Visualizacion de productos registrados
+                        System.out.printf(" %-6s  %-15s  %-8s  %n","Indice","Producto","Precio");
                         for (int i = 0; i < SumaProductos; i++) {
-                            System.out.println(
-                                    "" + (i + 1) + ") " + producto[i].nombreProducto + " Precio: $" + producto[i].precio);/// Se evita mostrar un indice 0 mediante i+1
+                            System.out.printf(" %-6s  %-15s  %-8s  %n",i+1,producto[i].nombreProducto,"$"+producto[i].precio);
+                            /// Se evita mostrar un indice 0 mediante i+1
                         }                        
                         /// Comunicacion por consola
                         String productoSeleccionado = ScannerObject.nextLine();
@@ -181,7 +182,7 @@ public class Supermercado_SUPER_25 {
                         /// Logica negada para evaluar si es distinto a `terminar` incluyendo el caso de
                         /// mayusculas
                         if (!(productoSeleccionado.equals("terminar")) && !(productoSeleccionado.equals("Terminar"))) {
-                            System.out.println("Cantidad: ");
+                            System.out.print("Cantidad: ");
                             int cantidadProducto = Integer.parseInt(ScannerObject.nextLine());
                             int prodSeleccionado = Integer.parseInt(productoSeleccionado);
 
@@ -204,9 +205,9 @@ public class Supermercado_SUPER_25 {
                         } else
                             completado = 1;
                     }
-
+                    System.out.println("\nEl subtotal de la compra es: $"+ total);
                     /// Comunicacion por consola para validar el posible descuento
-                    System.out.println("Codigo de descuento (opcional): ");
+                    System.out.print("Codigo de descuento (opcional): ");
                     String CodDescuento = ScannerObject.nextLine();
                     float descuentoAplicado = 0;
 
@@ -227,32 +228,47 @@ public class Supermercado_SUPER_25 {
                     Calendar calendar = Calendar.getInstance();
 
                     /// Se hace un bosquejo de la factura con respuestas de consola dinamicas
-                    System.out.println("\t\t\tSUPER-25");
+                    System.out.println("\n\t\t\tSUPER-25");
                     System.out.println("\t\t" + calendar.getTime());
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
-                    System.out.println("\tCajero:\t\t" + UserName);
-                    System.out.println("\tCliente:\t\t" + nombreCliente);
-                    System.out.println("\tNIT:\t\t" + nitCliente);
+                    System.out.printf(" %-20s  %-20s  %n","Cajero:",UserName);
+                    System.out.printf(" %-20s  %-20s  %n","Cliente:",nombreCliente);
+                    System.out.printf(" %-20s  %-20s  %n","NIT:",nitCliente);
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
-                    System.out.println("\tProducto  _ _ _ Precio/u _ _ _ Cantidad _ _ _ Total");
+                    System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Producto","Precio","Cantidad","Total");
                     for (int i = 0; i < sumaVendidos; i++) {
-                        System.out.println("\t" + producto[vendidos[i]].nombreProducto + " _ _ _ "
-                                + producto[vendidos[i]].precio + " " + producto[vendidos[i]].cantidadSesion + " "
-                                + producto[vendidos[i]].cantidadSesion * producto[vendidos[i]].precio);
+                        System.out.printf(" %-15s  %-7s  %-8s  %-10s %n",producto[vendidos[i]].nombreProducto,producto[vendidos[i]].precio,producto[vendidos[i]].cantidadSesion,producto[vendidos[i]].cantidadSesion * producto[vendidos[i]].precio);
                     }
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
-                    System.out.println("\tSubtotal: \t\t" + total);
-                    System.out.println("\tDescuento: \t\t" + descuentoAplicado * 100 + "%");
+                    System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Subtotal:","","",total);
+                    System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Descuento:","","",descuentoAplicado * 100+"%");
                     System.out.println(
                             "---------------------------------------------------------------------------------------");
-                    System.out.println("\tTotal: \t\t" + total * (1-descuentoAplicado));
+                    System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Total:","","",total * (1-descuentoAplicado));
 
                     break;
                 }
-                case "4": {
+                case "4": {                    
+                    for(int i = 0; i < SumaProductos -1 ; i++)
+                    {
+                        for(int j = 0; j < SumaProductos-1; j++)
+                        {
+                            if (producto[j].cantidadVendida < producto[j + 1].cantidadVendida)
+                            {
+                                Productos tmp = producto[j+1];
+                                producto[j+1] = producto[j];
+                                producto[j] = tmp;
+                            }
+                        }
+                    }
+                    System.out.printf(" %-15s  %-22s  %n","Producto","Cantidad total vendida");
+                    for(int i = 0;i < SumaProductos; i++)
+                    {
+                        System.out.printf(" %-15s  %-22s  %n",producto[i].nombreProducto,producto[i].cantidadVendida);
+                    }                    
                     break;
                 }
                 case "5": {
