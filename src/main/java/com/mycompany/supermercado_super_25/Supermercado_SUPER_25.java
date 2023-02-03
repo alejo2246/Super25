@@ -25,8 +25,8 @@ public class Supermercado_SUPER_25 {
         codigoDescuento cupones[] = new codigoDescuento[10];
         int sumaCupones = 0;
         /// Creacion de crdenciales
-        String[] users = { "cajero_1", "cajero_2", "cajero_3" };
-        String[] passwords = { "ipc_1", "ipc_2", "ipc_3" };
+        String[] users = { "cajero_202200381", "cajero_2", "cajero_3" };
+        String[] passwords = { "ipc_202200381", "ipc_2", "ipc_3" };
         /// Creacion del objeto Scanner para su uso en lectura por consola
         Scanner ScannerObject = new Scanner(System.in);
         /// Comunicacion con el usuario para ingreso de credenciales
@@ -231,22 +231,22 @@ public class Supermercado_SUPER_25 {
                     System.out.println("\n\t\t\tSUPER-25");
                     System.out.println("\t\t" + calendar.getTime());
                     System.out.println(
-                            "---------------------------------------------------------------------------------------");
-                    System.out.printf(" %-20s  %-20s  %n","Cajero:",UserName);
-                    System.out.printf(" %-20s  %-20s  %n","Cliente:",nombreCliente);
-                    System.out.printf(" %-20s  %-20s  %n","NIT:",nitCliente);
+                            "-------------------------------------------------------------");
+                    System.out.printf(" %-20s  %-50s  %n","Cajero:","Pablo Andres Curruchiche Natareno");
+                    System.out.printf(" %-20s  %-50s  %n","Cliente:",nombreCliente);
+                    System.out.printf(" %-20s  %-50s  %n","NIT:",nitCliente);
                     System.out.println(
-                            "---------------------------------------------------------------------------------------");
+                            "-------------------------------------------------------------");
                     System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Producto","Precio","Cantidad","Total");
                     for (int i = 0; i < sumaVendidos; i++) {
                         System.out.printf(" %-15s  %-7s  %-8s  %-10s %n",producto[vendidos[i]].nombreProducto,producto[vendidos[i]].precio,producto[vendidos[i]].cantidadSesion,producto[vendidos[i]].cantidadSesion * producto[vendidos[i]].precio);
                     }
                     System.out.println(
-                            "---------------------------------------------------------------------------------------");
+                            "-------------------------------------------------------------");
                     System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Subtotal:","","",total);
                     System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Descuento:","","",descuentoAplicado * 100+"%");
                     System.out.println(
-                            "---------------------------------------------------------------------------------------");
+                            "-------------------------------------------------------------");
                     System.out.printf(" %-15s  %-7s  %-8s  %-10s %n","Total:","","",total * (1-descuentoAplicado));
 
                     break;
